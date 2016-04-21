@@ -59,8 +59,12 @@ def inicio(request):
             <div align="center">
             <body bgcolor="blue/red">
             """
-            respuesta += "La entrada ya existe en el diccionario...<br>"
-            respuesta += body + " = " + str(url_pedida.url_corta) + "</body>"
+            respuesta += "La entrada ya existe...<br>"
+            respuesta += '<a href="' + url_pedida.url_larga + '">' + str(url_pedida.url_corta) + '</a>'
+            respuesta += ": "
+            respuesta += '<a href="' + url_pedida.url_larga + '">' + url_pedida.url_larga + '</a>'
+            respuesta += "</body>"
+
 
         except Url.DoesNotExist:
 
@@ -72,7 +76,12 @@ def inicio(request):
             <div align="center">
             <body bgcolor="blue/red">
             """
-            respuesta += body + " = " + str(url_corta) + "</body>"
+            respuesta += "Se ha introducido una nueva entrada...<br>"
+            respuesta += '<a href="' + new_url.url_larga + '">' + str(new_url.url_corta) + '</a>'
+            respuesta += ": "
+            respuesta += '<a href="' + new_url.url_larga + '">' + new_url.url_larga + '</a>'
+            respuesta += "</body>"
+
 
     return HttpResponse(respuesta)
 
